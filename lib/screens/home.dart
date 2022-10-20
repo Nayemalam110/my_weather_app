@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_weather_app/controller/globel_controller.dart';
+import 'package:my_weather_app/widgets/place_name.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -16,8 +17,8 @@ class Home extends StatelessWidget {
           ? Center(
               child: Text('Loading'),
             )
-          : Center(
-              child: Text('Not loading'),
+          : ListView(
+              children: [PlaceName()],
             )),
     ));
   }
