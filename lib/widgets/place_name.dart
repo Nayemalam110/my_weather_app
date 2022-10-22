@@ -28,6 +28,7 @@ class _PlaceNameState extends State<PlaceName> {
   Future<void> getCityName(lang, long) async {
     List<Placemark> placemarks = await placemarkFromCoordinates(lang, long);
     var place = placemarks[0];
+    print(place);
 
     cityName = place.locality!;
     subLocalityName = place.subLocality!;
