@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import '../model/weathermodel/main.dart';
 
 class GlobalController extends GetxController {
   final RxBool _isLoading = true.obs;
@@ -35,11 +39,6 @@ class GlobalController extends GetxController {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
         return Future.error('Location permissions are denied sorry');
       }
     }
@@ -60,6 +59,30 @@ class GlobalController extends GetxController {
       _isLoading.value = false;
       print(_lattitude);
       print(_longitude);
+      fetchData(_lattitude, _longitude);
     });
+  }
+
+  void fetchData(lat, long) async {
+    final List<Main> weatherdata = [];
+    final url = Uri.parse(
+        'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$long&APPID=010d8469f57ac9801d2f0a9d72e648fc');
+
+    try {
+      final response = await http.get(url);
+
+      final extertData = json.decode(response.body) as Map<String, dynamic>;
+      if (extertData == null) {
+        return;
+      }
+
+      var extertDatas = extertData['main'];
+      print(extertDatas['humidity']);
+
+      print('No error');
+    } catch (e) {
+      print('There is an error');
+      print(e);
+    }
   }
 }
