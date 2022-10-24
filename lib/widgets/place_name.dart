@@ -12,6 +12,8 @@ class PlaceName extends StatefulWidget {
 class _PlaceNameState extends State<PlaceName> {
   String cityName = "";
   String subLocalityName = "";
+  String thoroughfare = "";
+  String street = "";
   String date = DateFormat.yMMMMd().format(DateTime.now());
 
   final GlobalController globalController =
@@ -28,36 +30,40 @@ class _PlaceNameState extends State<PlaceName> {
   Future<void> getCityName(lang, long) async {
     List<Placemark> placemarks = await placemarkFromCoordinates(lang, long);
     var place = placemarks[0];
-    print(place);
-
     cityName = place.locality!;
     subLocalityName = place.subLocality!;
     setState(() {
       cityName = place.locality!;
       subLocalityName = place.subLocality!;
+      street = place.street!;
+      thoroughfare = place.thoroughfare!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          alignment: Alignment.topLeft,
           margin: EdgeInsets.only(left: 20, right: 20),
           child: Text(
-            '$cityName',
-            style: TextStyle(fontSize: 35, height: 1.5),
+            '$subLocalityName,$cityName',
+            style: TextStyle(fontSize: 25, height: 1.5),
           ),
         ),
         Container(
-          alignment: Alignment.topLeft,
           margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: Text(
             date,
             style:
                 TextStyle(color: Colors.grey[700], fontSize: 14, height: 1.5),
           ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          child: Text('$street'),
         ),
       ],
     );

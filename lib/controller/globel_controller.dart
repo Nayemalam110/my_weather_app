@@ -59,30 +59,48 @@ class GlobalController extends GetxController {
       _isLoading.value = false;
       print(_lattitude);
       print(_longitude);
-      fetchData(_lattitude, _longitude);
+      return fetchData(_lattitude, _longitude);
     });
   }
 
-  void fetchData(lat, long) async {
-    final List<Main> weatherdata = [];
+//Alternative example
+
+  // Future<WeatherModel> getWeather(String city) async{
+  //   final result = await http.Client().get("https://api.openweathermap.org/data/2.5/weather?q=$city&APPID=43ea6baaad7663dc17637e22ee6f78f2");
+
+  //   if(result.statusCode != 200)
+  //     throw Exception();
+
+  //   return parsedJson(result.body);
+  // }
+
+  // WeatherModel parsedJson(final response){
+  //   final jsonDecoded = json.decode(response);
+
+  //   final jsonWeather = jsonDecoded["main"];
+
+  //   return WeatherModel.fromJson(jsonWeather);
+  // }
+
+  Future<Main> fetchData(lat, long) async {
     final url = Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$long&APPID=010d8469f57ac9801d2f0a9d72e648fc');
 
     try {
       final response = await http.get(url);
-
-      final extertData = json.decode(response.body) as Map<String, dynamic>;
-      if (extertData == null) {
-        return;
+      if (response.statusCode != 200) {
+        throw Exception();
       }
 
-      var extertDatas = extertData['main'];
-      print(extertDatas['humidity']);
+      final extertData = json.decode(response.body);
 
-      print('No error');
+      var extertDatas = extertData['main'];
+
+      return Main.fromJson(extertDatas);
     } catch (e) {
       print('There is an error');
       print(e);
+      throw e;
     }
   }
 }

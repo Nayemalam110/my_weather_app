@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
               child: Text('Loading'),
             )
           : ListView(
-              children: [PlaceName()],
+              children: [PlaceName(), Container()],
             )),
     ));
   }
