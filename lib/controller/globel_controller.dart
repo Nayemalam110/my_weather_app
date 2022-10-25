@@ -14,7 +14,7 @@ class GlobalController extends GetxController {
 
   RxDouble getLattitude() => _lattitude;
   RxDouble getLognitude() => _longitude;
-
+  Main? maindata;
   @override
   void onInit() {
     if (_isLoading.isTrue) {
@@ -56,7 +56,7 @@ class GlobalController extends GetxController {
         .then((value) {
       _lattitude.value = value.latitude;
       _longitude.value = value.longitude;
-      _isLoading.value = false;
+
       print(_lattitude);
       print(_longitude);
       return fetchData(_lattitude, _longitude);
@@ -82,7 +82,7 @@ class GlobalController extends GetxController {
   //   return WeatherModel.fromJson(jsonWeather);
   // }
 
-  Future<Main> fetchData(lat, long) async {
+  Future<void> fetchData(lat, long) async {
     final url = Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$long&APPID=010d8469f57ac9801d2f0a9d72e648fc');
 
@@ -96,11 +96,13 @@ class GlobalController extends GetxController {
 
       var extertDatas = extertData['main'];
 
-      return Main.fromJson(extertDatas);
+      maindata = Main.fromJson(extertDatas);
     } catch (e) {
       print('There is an error');
       print(e);
       throw e;
+    } finally {
+      _isLoading.value = false;
     }
   }
 }

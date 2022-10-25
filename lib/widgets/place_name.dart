@@ -23,6 +23,7 @@ class _PlaceNameState extends State<PlaceName> {
   void initState() {
     getCityName(globalController.getLattitude().value,
         globalController.getLognitude().value);
+
     // TODO: implement initState
     super.initState();
   }

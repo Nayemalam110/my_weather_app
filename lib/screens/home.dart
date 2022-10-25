@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_weather_app/controller/globel_controller.dart';
+import 'package:my_weather_app/model/weathermodel/main.dart';
+import 'package:my_weather_app/widgets/get_temp.dart';
 import 'package:my_weather_app/widgets/place_name.dart';
 
 class Home extends StatelessWidget {
@@ -11,6 +13,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Main? maindata = globalController.maindata;
+    var tempa = 0;
+
     return Scaffold(
         body: SafeArea(
       child: Obx(() => globalController.checkLoading().isTrue
@@ -18,7 +23,10 @@ class Home extends StatelessWidget {
               child: Text('Loading'),
             )
           : ListView(
-              children: [PlaceName(), Container()],
+              children: [
+                PlaceName(),
+                GetTemp(),
+              ],
             )),
     ));
   }
