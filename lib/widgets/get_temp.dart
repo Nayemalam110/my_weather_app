@@ -11,6 +11,11 @@ class GetTemp extends StatefulWidget {
 
 class _GetTempState extends State<GetTemp> {
   double tempe = 0;
+  double? feelsLike;
+  double? tempMin;
+  double? tempMax;
+  int? pressure;
+  int? humidity;
   Main? maindata;
 
   final GlobalController globalController =
@@ -19,6 +24,7 @@ class _GetTempState extends State<GetTemp> {
   @override
   void initState() {
     maindata = globalController.maindata;
+
     // TODO: implement initState
     super.initState();
   }
@@ -28,10 +34,25 @@ class _GetTempState extends State<GetTemp> {
     tempe = maindata!.temp!;
     if (tempe != 0) {
       tempe = (tempe - 272);
+      tempMax = (maindata!.tempMax! - 272);
+      tempMin = (maindata!.tempMin! - 272);
+      pressure = maindata!.pressure;
+      humidity = maindata!.humidity;
     }
 
     return Container(
-      child: Text(tempe.toStringAsFixed(2)),
-    );
+        child: Row(
+      children: [
+        Column(
+          children: [Text('Temp'), Text(tempe.toString())],
+        ),
+        Column(
+          children: [Text('TempMax'), Text(tempMax.toString())],
+        ),
+        Column(
+          children: [Text('TempMin'), Text(tempMin.toString())],
+        ),
+      ],
+    ));
   }
 }
