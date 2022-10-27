@@ -41,17 +41,35 @@ class _GetTempState extends State<GetTemp> {
     }
 
     return Container(
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
       children: [
-        Column(
-          children: [Text('Temp'), Text(tempe.toStringAsFixed(0))],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [Text('Temp'), Text(tempe.toStringAsFixed(0))],
+            ),
+            Column(
+              children: [Text('TempMax'), Text(tempMax!.toStringAsFixed(0))],
+            ),
+            Column(
+              children: [Text('TempMin'), Text(tempMin!.toStringAsFixed(0))],
+            ),
+          ],
         ),
-        Column(
-          children: [Text('TempMax'), Text(tempMax!.toStringAsFixed(0))],
+        SizedBox(
+          height: 15,
         ),
-        Column(
-          children: [Text('TempMin'), Text(tempMin!.toStringAsFixed(0))],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [Text('pressure'), Text(pressure!.toStringAsFixed(0))],
+            ),
+            Column(
+              children: [Text('humidity'), Text(humidity!.toStringAsFixed(0))],
+            ),
+          ],
         ),
       ],
     ));
