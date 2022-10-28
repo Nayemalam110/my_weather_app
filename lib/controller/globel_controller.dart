@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../model/weathermodel/main.dart';
 
 class GlobalController extends GetxController {
   final RxBool _isLoading = true.obs;
@@ -14,7 +13,6 @@ class GlobalController extends GetxController {
 
   RxDouble getLattitude() => _lattitude;
   RxDouble getLognitude() => _longitude;
-  Main? maindata;
   @override
   void onInit() {
     if (_isLoading.isTrue) {
@@ -95,8 +93,6 @@ class GlobalController extends GetxController {
       final extertData = json.decode(response.body);
 
       var extertDatas = extertData['main'];
-
-      maindata = Main.fromJson(extertDatas);
     } catch (e) {
       print('There is an error');
       print(e);
