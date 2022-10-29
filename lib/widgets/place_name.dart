@@ -44,13 +44,13 @@ class _PlaceNameState extends State<PlaceName> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           margin: EdgeInsets.only(left: 20, right: 20),
           child: Text(
-            '$subLocalityName,$cityName',
+            '$cityName',
             style: TextStyle(fontSize: 25, height: 1.5),
           ),
         ),
@@ -61,10 +61,6 @@ class _PlaceNameState extends State<PlaceName> {
             style:
                 TextStyle(color: Colors.grey[700], fontSize: 14, height: 1.5),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: Text('$street'),
         ),
       ],
     );
