@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_weather_app/api/fatch_weather.dart';
+import 'package:my_weather_app/model/weather_data.dart';
+import 'package:my_weather_app/model/weather_data_current.dart';
 
 class GlobalController extends GetxController {
-  final RxBool _isLoading = true.obs;
+  RxBool _isLoading = true.obs;
   final RxDouble _lattitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
 
@@ -13,6 +16,8 @@ class GlobalController extends GetxController {
 
   RxDouble getLattitude() => _lattitude;
   RxDouble getLognitude() => _longitude;
+  final weatherData = WeatherData().obs;
+
   @override
   void onInit() {
     if (_isLoading.isTrue) {
@@ -57,7 +62,12 @@ class GlobalController extends GetxController {
 
       print(_lattitude);
       print(_longitude);
-      return fetchData(_lattitude, _longitude);
+      return FeachWeathrApi()
+          .proscessData(value.latitude, value.longitude)
+          .then((value) {
+        weatherData.value = value!;
+        _isLoading.value = false;
+      });
     });
   }
 
