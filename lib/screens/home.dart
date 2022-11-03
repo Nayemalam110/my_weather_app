@@ -5,6 +5,8 @@ import 'package:my_weather_app/controller/globel_controller.dart';
 import 'package:my_weather_app/widgets/get_temp.dart';
 import 'package:my_weather_app/widgets/place_name.dart';
 
+import '../widgets/current_data_widget.dart';
+
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
@@ -25,6 +27,7 @@ class Home extends StatelessWidget {
               children: [
                 PlaceName(),
                 GetTemp(),
+                CurrentDataWidget(),
               ],
             )),
     ));
