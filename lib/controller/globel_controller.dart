@@ -17,6 +17,9 @@ class GlobalController extends GetxController {
   RxDouble getLattitude() => _lattitude;
   RxDouble getLognitude() => _longitude;
   final weatherData = WeatherData().obs;
+  getWeatherData() {
+    return weatherData.value;
+  }
 
   @override
   void onInit() {
