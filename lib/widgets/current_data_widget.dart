@@ -14,8 +14,8 @@ class CurrentDataWidget extends StatelessWidget {
 
     var sunrise = DateTime.fromMillisecondsSinceEpoch(
         weatherDataCurrent.current.sunrise! * 1000);
-    var sunset =
-        DateTime.fromMicrosecondsSinceEpoch(weatherDataCurrent.current.sunset!);
+    var sunset = DateTime.fromMillisecondsSinceEpoch(
+        weatherDataCurrent.current.sunset! * 1000);
 
     return Container(
       child: Column(
@@ -23,6 +23,12 @@ class CurrentDataWidget extends StatelessWidget {
           Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
           Text('SunRise:${sunrise}'),
           Text('SunSet:${sunset}'),
+          Row(
+            children: [
+              Image.asset(
+                  'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png')
+            ],
+          )
         ],
       ),
     );
