@@ -18,18 +18,48 @@ class CurrentDataWidget extends StatelessWidget {
         weatherDataCurrent.current.sunset! * 1000);
 
     return Container(
-      child: Column(
-        children: [
-          Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
-          Text('SunRise:${sunrise}'),
-          Text('SunSet:${sunset}'),
-          Row(
-            children: [
-              Image.asset(
-                  'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png')
-            ],
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(35.0),
+        child: Column(
+          children: [
+            Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+            Text('SunRise:${sunrise}'),
+            Text('SunSet:${sunset}'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                    'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
+                Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+              ],
+            ),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
+                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Image.asset(
+                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
+                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Image.asset(
+                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
+                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
