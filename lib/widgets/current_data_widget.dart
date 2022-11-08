@@ -30,7 +30,10 @@ class CurrentDataWidget extends StatelessWidget {
               children: [
                 Image.asset(
                     'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
-                Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                Text(
+                  '${weatherDataCurrent.current.temp!}°C',
+                  style: TextStyle(fontSize: 65, fontWeight: FontWeight.w600),
+                ),
               ],
             ),
             Row(
