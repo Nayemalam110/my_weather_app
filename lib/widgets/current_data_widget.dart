@@ -40,25 +40,24 @@ class CurrentDataWidget extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Image.asset(
-                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
-                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                    Image.asset('assets/icons/windspeed.png'),
+                    Text(weatherDataCurrent.current.windSpeed!
+                        .toStringAsFixed(0)),
                   ],
                 ),
                 Column(
                   children: [
-                    Image.asset(
-                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
-                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                    Image.asset('assets/icons/clouds.png'),
+                    Text(weatherDataCurrent.current.clouds!.toStringAsFixed(0)),
                   ],
                 ),
                 Column(
                   children: [
-                    Image.asset(
-                        'assets/weather/${weatherDataCurrent.current.weather![0].icon}.png'),
-                    Text(weatherDataCurrent.current.temp!.toStringAsFixed(0)),
+                    Image.asset('assets/icons/humidity.png'),
+                    Text(weatherDataCurrent.current.humidity!
+                        .toStringAsFixed(0)),
                   ],
-                )
+                ),
               ],
             )
           ],
