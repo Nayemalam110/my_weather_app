@@ -1,3 +1,10 @@
+class WeatherDataHourly {
+  final Hourly current;
+  WeatherDataHourly({required this.current});
+  factory WeatherDataHourly.fromJson(Map<String, dynamic> json) =>
+      WeatherDataHourly(current: Hourly.fromJson(json['hourly']));
+}
+
 class Hourly {
   int? dt;
   double? temp;
