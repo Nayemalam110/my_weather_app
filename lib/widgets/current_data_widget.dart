@@ -53,6 +53,12 @@ class CurrentDataWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
+                    Image.asset('assets/icons/clouds.png'),
+                    Text(weatherDataCurrent.current.clouds!.toStringAsFixed(0)),
+                  ],
+                ),
+                Column(
+                  children: [
                     Image.asset('assets/icons/humidity.png'),
                     Text(weatherDataCurrent.current.humidity!
                         .toStringAsFixed(0)),
